@@ -1,0 +1,12 @@
+<view class="container">
+    <form>
+        <view class=''>
+            微信授权页面
+        </view>
+        <view>
+            授权并同意使用或微信账号登录当前小程序
+        </view>
+        <button class="default" open-type="getUserInfo" bindgetuserinfo='bindGetUserInfo'> 授权登录
+        </button>
+    </form>
+</view>

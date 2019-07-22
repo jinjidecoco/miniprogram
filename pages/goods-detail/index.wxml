@@ -1,0 +1,104 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class='container'>
+    <view class="goods-detail">
+        <!-- <view>商品详情</view> -->
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+
+    <view class="goods-describe">
+        <view class="goods-title">
+            {{goodsDetail.basicInfo.name}}
+        </view>
+        <view class="goods-share">
+            分享
+        </view>
+    </view>
+    <view class="goods-info">
+        <view class="goods-price">
+            ￥ {{goodsDetail.basicInfo.originalPrice}}
+        </view>
+        <view class="goods-buyCount">
+            购买{{goodsDetail.basicInfo.numberOrders}}次
+        </view>
+        <view class="goods-comment">
+            共收到{{goodsDetail.basicInfo.numberGoodReputation}}次好评
+        </view>
+    </view>
+
+    <view wx:if="{{hideSize}}" class="goods-size" bindtap='showCar'>
+        选择：{{selectLabel}}
+    </view>
+    <view class="show-popup" hidden="{{hidePopup}}">
+        <view class="show-mask" bindtap='closeCar'></view>
+        <view class='popup-content'>
+            <view class="popup-box">
+                <view class="basic-info">
+                    <image class="info-pic" src="{{goodsDetail.basicInfo.pic}}" lazy-load="false">
+
+                    </image>
+                    <view class="info-box">
+                        <view class="info-name">
+                            加绒毛衣
+                        </view>
+                        <view class='info-price'>
+                            ￥100
+                        </view>
+                    </view>
+                </view>
+                <view class="basic-size">
+                    <view class="select-box" wx:for="{{goodsDetail.properties}}" wx:for-item="label" wx:key="{{label.id}}" id="{{label.id}}" wx:for-index="idx">
+                        <view class='select-label' id="{{label.id}}">{{label.name}}</view>
+                        <view class="size-box">
+                            <view class="size-item {{item.cur?'cur':''}}" wx:for="{{label.childsCurGoods}}" wx:key="{{index}}" data-childIdx='{{index}}' id="{{item.id}}" data-index="{{idx}}" data-propId="{{label.id}}" bindtap="chooseSize">
+                                {{item.name}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="buy-count">
+                    <view class="count-title">
+                        购买数量
+                    </view>
+                    <view class="handle-count">
+                        <view class="reduce-count item" bindtap='reduceCount'>
+                            -
+                        </view>
+                        <view class='real-count item'>
+                            {{realCount}}
+                        </view>
+                        <view class='add-count item' bindtap='addCount'>
+                            +
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="">
+                <button type="warn" size="{{primarySize}}" plain="{{plain}}" bindtap="addCar" style='width:90%'>
+                        加入购物车
+                </button>
+            </view>
+        </view>
+    </view>
+    <view class="goods-introduce">
+        商品介绍
+    </view>
+    <view class='shop-footer'>
+        <view class="customer-box">
+            <view class="customer-service">
+                客服
+            </view>
+            <view class="shop-car">
+                购物车
+                <view class='shop-count'>
+                    6
+                </view>
+            </view>
+        </view>
+        <view class="join-car" bindtap='showCar'>
+            加入购物车
+        </view>
+        <view class="buy-now">
+            立即购买
+        </view>
+    </view>
+</view>
