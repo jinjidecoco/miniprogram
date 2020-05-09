@@ -47,6 +47,7 @@ App({
         }
       })
   },
+  
   onShow(e){
     console.log('----show');
     console.log(e);

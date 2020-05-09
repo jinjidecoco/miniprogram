@@ -1,4 +1,4 @@
-const api = require("../../utils/request.js");
+const fetch = require("../../utils/request.js");
 var app = getApp();
 Page({
   /*
@@ -62,7 +62,7 @@ Page({
     }
     wx.login({
       success:function(res) {
-        api.fetch("/user/wxapp/login", {
+        fetch("/user/wxapp/login", {
             code: res.code,
           }).then(res => {
             console.log(res);
@@ -70,16 +70,8 @@ Page({
               // console.log('还未注册');
               _this.register();
             }
-            if(res.data.code!==0){
-              wx.hideLoading();
-              wx.showModal({
-                title: '提示',
-                content: '无法登录，请重试',
-                showCancel: false
-              })
-            }
-            wx.setStorageSync('token', res.data.data.token);
-            wx.setStorageSync('uid',res.data.data.uid);
+            wx.setStorageSync('token',res.data.token);
+            wx.setStorageSync('uid',res.data.uid);
             wx.reLaunch({
               url: '/pages/index/index',
             })
@@ -93,13 +85,16 @@ Page({
         const code =res.code;
         wx.getUserInfo({
           success: function (userinfo){
-            api
-              .fetch("/user/wxapp/register/complex", {
+            console.log('新用户')
+            fetch("/user/wxapp/register/simple", {
                 code: code,
-                encryptedData: res.encryptedData,
-                iv: res.iv
               })
               .then(res => {
+                if(res.code===0){
+                  wx.showModal({
+                      title: '登录成功',
+                  })
+                }
                 wx.reLaunch({
                   url: '/pages/index/index',
                 })

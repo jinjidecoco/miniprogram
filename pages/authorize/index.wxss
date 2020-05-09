@@ -1,0 +1,10 @@
+.container{
+  margin-top:100rpx;
+  background:#fff;
+  text-align:center;
+}
+.btn-login{
+  width:60%;
+  background:'#54b635';
+  margin-top:50rpx;
+}

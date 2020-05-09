@@ -1,0 +1,41 @@
+
+<view class="container">
+   <view  class="car-box" wx:for="{{carList}}" wx:key="id" data-index='{{index}}'>
+    <view class="car-item">
+      <view class='radio' bindtap='selectItem' data-item-index='{{index}}'>
+        <image wx:if='{{item.selected}}' class="no-select" src="../../images/radio-red.png" ></image>
+        <image wx:else='{{item.selected}}'  class="no-select" src="../../images/radio-gray.png" ></image>
+      </view>
+      <view class="content-box">
+        <view  class="shop">
+          <image class='shop-pic' src="{{item.pic}}">
+          </image>
+        </view>
+        <view class='dec'> 
+            <view class=' item title'>{{item.name}}</view>
+            <view class='item prop'>{{item.propName}}</view>
+            <view class='price'>¥ {{item.price}}</view>
+        </view>
+      </view>
+    </view>
+   </view>
+   <view  class='total-container'>
+      <view class='total-box' >
+          <view class='get-total'>
+            <view  class="selected"  bindtap='bindSelectAll'>
+              <image wx:if='{{allSelect}}' class='pic'  src='../../images/radio-red.png'></image>
+              <image wx:else='{{allSelect}}' class='pic'  src='../../images/radio-gray.png'></image>
+            </view>
+            <view class="selected-count" >
+              全选 {{checkedGoods.length}}
+            </view>
+            <view class="total-price">
+              合计: ¥ {{totalPrice}}
+            </view>
+          </view>
+          <view class='buy'>
+            去结算
+          </view>
+      </view>
+   </view>
+</view>

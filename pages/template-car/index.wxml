@@ -1,0 +1,27 @@
+<template name="no-shop">
+  <view class="" hover-class="none" >
+    购物车是空的呢
+  </view>
+  <view class="" hover-class="none" >
+    快去放点买的东西吧
+  </view>
+</template>
+
+<template name="shop-list">
+  <view class="shop-list" wx:for="{{carInfo.carList}}" wx:key="{{item.goodsId}}">
+    {{item}}
+    <view class="" hover-class="none">
+      <image class="" src="{{item.pic}}"  lazy-load="false"  bindload="">
+        
+      </image>
+    </view>
+    <view class="" hover-class="none">
+      <text class="" >
+        {{item.name}}
+      </text>
+      <text class="">
+      {{item.propName}}
+      </text>
+    </view>
+  </view>
+</template>

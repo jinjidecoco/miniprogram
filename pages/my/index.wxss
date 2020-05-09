@@ -1,0 +1,50 @@
+.userinfo {
+    text-align: center;
+}
+
+.userinfo .avatar {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 5rpx;
+    background-size: cover;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    margin-top: 10rpx;
+    border-top: 2rpx solid rgb(235, 229, 229);
+    border-bottom: 10rpx solid #eee;
+    /* background: #C9B44B; */
+}
+
+.account .item {
+    display: flex;
+    flex: 1;
+    font-size: 30rpx;
+    text-align: center;
+    flex-direction: column;
+    border-left: 1px solid #ccc;
+    margin-left: -1rpx;
+}
+
+.orderstatus {
+    display: flex;
+    border-bottom: 5rpx solid #eee;
+    /* background: #C6A404; */
+}
+
+.orderstatus .item {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 30rpx;
+    color: #666;
+}
+
+.orderstatus .icon {
+    width: 64rpx;
+    height: 64rpx;
+}

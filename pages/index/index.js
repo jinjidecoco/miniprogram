@@ -1,4 +1,5 @@
-const api = require('../../utils/request.js')
+import config from '../../config'
+const fetch  = require('../../utils/request.js')
 const app = getApp()
 Page({
   data: {
@@ -7,8 +8,8 @@ Page({
     interval: 3000,
     duration: 1000,
     circular: true,
-    curCategoryId: '00001'
-
+    curCategoryId: '00001',
+    isFixed:false
   },
   getInfo :function(){
   wx.getSystemInfo({
@@ -30,12 +31,11 @@ Page({
     this.getGoodsList(this.data.curCategoryId);
   },
   onLoad: function () {
-    console.log('首页');
     var that = this;
     //请求轮播页面
-    api.fetch('/banner/list').then(function (res) {
+    fetch('/banner/list').then(function (res) {
       // console.log(res);
-      if (res.data.code == 404) {
+      if (res.code == 404) {
         wx.showModal({
           title: '提示',
           content: '请在后台添加 banner 轮播图片',
@@ -43,26 +43,24 @@ Page({
         })
       } else {
         that.setData({
-          imgUrls: res.data.data
+          imgUrls: res.data
         })
       }
-
     }).catch(function (res) {
-      console.log(res);
+      // console.log(res);
       wx.showToast({
-        title: res.data.msg,
+        title: res.msg,
         icon: 'none'
       })
     })
     //请求商品目录
-    api.fetch('/shop/goods/category/all').then(function (res) {
+      fetch('/shop/goods/category/all').then(function (res) {
       let categories = [{
         id: '00001',
         name: '全部'
       }];
-      if (res.data.code == 0) {
-        let retData = res.data.data;
-        retData.map(function (val) {
+      if (res.code == 0) {
+        res.data.map(function (val) {
           categories.push(val);
         })
         that.setData({
@@ -72,6 +70,32 @@ Page({
     })
     that.getGoodsList('00001');
   },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () { },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title:   config.shareProfile,
+      path: '/pages/index/index?inviter_id=' + wx.getStorageSync('uid')
+    };
+  },
+  onPageScroll:function(res){
+    if(res.scrollTop>150){
+        this.setData({
+          isFixed:true
+        })
+    }else{
+      this.setData({
+        isFixed:false
+      })
+    }
+  },
   //获取所有商品
   getGoodsList: function (categoriesId) {
     var that = this;
@@ -79,13 +103,13 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    api.fetch('/shop/goods/list', {
+    fetch('/shop/goods/list', {
       categoryId: categoriesId
     }).then(function (res) {
       wx.hideLoading();
-      if (res.data.code == 0) {
+      if (res.code == 0) {
         that.setData({
-          goods: res.data.data
+          goods: res.data
         })
       }
     })

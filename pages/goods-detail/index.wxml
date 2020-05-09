@@ -87,10 +87,10 @@
             <view class="customer-service">
                 客服
             </view>
-            <view class="shop-car">
+            <view class="shop-car" bindtap='goCar'>
                 购物车
                 <view class='shop-count'>
-                    6
+                    {{shopNum}}
                 </view>
             </view>
         </view>

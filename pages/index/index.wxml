@@ -8,8 +8,8 @@
             </block>
         </swiper>
     </view>
-    <view class="type-goods">
-        <scroll-view class="type-container" scroll-x="true">
+    <view class="type-goods ">
+        <scroll-view class="type-container {{isFixed?'type-fixed':''}}" scroll-x="true">
             <view class="type-box" wx:for="{{categories}}" wx:key="id" hover-class="none">
                 <view id="{{item.id}}" class="type-item {{curCategoryId == item.id ? 'active-type':''}}" bindtap="tabClick">
                     {{item.name}}

@@ -34,6 +34,14 @@ swiper-item image {
 .active-type{
     border-bottom:2px solid red;
 }
+.type-fixed{
+  position:fixed;
+  z-index:10000000;
+  top:0;
+  left:0;
+  /* border-bottom:2rpx solid #dde ; */
+  background:#eee;
+}
 .goods-list{
   display:flex;
   padding:18rpx;

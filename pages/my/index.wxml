@@ -1,0 +1,49 @@
+<view class="container">
+    <view class="userinfo">
+        <image class="avatar" src="{{userInfo.avatarUrl}}" lazy-load="false" bindload="">
+
+        </image>
+        <text class="">
+          {{userInfo.nickName}}
+        </text>
+    </view>
+    <view class="account">
+        <view class="item" hover-class="none">
+            <view>0.00</view>
+            <view>余额</view>
+        </view>
+        <view class="item" hover-class="none">
+            <view>0.00</view>
+            <view>冻结</view>
+        </view>
+        <view class="item" hover-class="none">
+            <view>0.00</view>
+            <view>积分</view>
+        </view>
+    </view>
+    <view class='orderstatus'>
+        <view class="item" hover-class="none">
+            <image class="icon" src="../../images/order/topay.png"></image>
+            <view>待付款</view>
+        </view>
+        <view class="item" hover-class="none">
+            <image class="icon" src="../../images/order/fahuo.png"></image>
+            <view>待发货</view>
+        </view>
+        <view class="item" hover-class="none">
+            <image class="icon" src="../../images/order/shouhuo.png"></image>
+            <view>待收货</view>
+        </view>
+        <view class="item" hover-class="none">
+            <image class="icon" src="../../images/order/pj.png"></image>
+            <view>待评价</view>
+        </view>
+        <view class="item" hover-class="none">
+            <image class="icon" src="../../images/order/shouhou.png"></image>
+            <view>退款/售后</view>
+        </view>
+    </view>
+    <view>
+        <navigator url="" hover-class="navigator-hover">返佣明细</navigator>
+    </view>
+</view>
